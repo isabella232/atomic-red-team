@@ -1,3 +1,7 @@
+# Description for element tags
+# (optional): Optional element
+# (local): Used for tests on local platforms (e.g. windows, macos)
+# (cloud): Used for tests on cloud platforms (e.g. aws)
 ---
 attack_technique: TODO
 display_name: TODO
@@ -11,6 +15,7 @@ atomic_tests:
     - windows
     - macos
     - linux
+    - aws
 
   input_arguments:
     output_file:
@@ -29,8 +34,12 @@ atomic_tests:
 
   executor:
     name: command_prompt
-    elevation_required: true # indicates whether command must be run with admin privileges. If the elevation_required attribute is not defined, the value is assumed to be false
-    command: | # these are the actaul attack commands, at least one command must be provided
+    elevation_required: true # (local) indicates whether command must be run with admin privileges. If the elevation_required attribute is not defined, the value is assumed to be false
+    command: | # these are the actual attack commands, at least one command must be provided
       TODO
-    cleanup_command: | # you can remove the cleanup_command section if there are no cleanup commands
+    iam_role_definition: | # (cloud) (optional) IAM role definition containing the permissions needed to run the attack command
+      TODO
+    cleanup_command: | # (optional) commands to perform any log removal or other cleanup to restore the system to its previous state
+      TODO
+    cleanup_iam_role_definition: # (cloud) (optional) IAM role definition containing the permissions needed to run cleanup
       TODO

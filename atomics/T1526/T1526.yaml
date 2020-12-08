@@ -1,0 +1,22 @@
+- name: Enumerate Cloudtrails for a Given Region
+  description: An adversary may attempt to enumerate the configured trails, to identify what actions will be logged and where they will be logged to. In AWS, this may start with a single call to enumerate the trails applicable to the default region.
+  supported_cloud_platforms:
+  - aws
+  executor:
+    command: aws cloudtrail describe-trails
+    name: bash
+    iam_role_definition: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "cloudtrail:DescribeTrails",
+            ],
+            "Resource": [
+              "*"
+            ]
+          }
+        ]
+      }
